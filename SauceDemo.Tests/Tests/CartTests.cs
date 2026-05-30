@@ -21,7 +21,14 @@ public class CartTest : AuthenticatedBaseTest {
 
     [Test]
     public async Task TC06_AddTwoDifferentProductsToCartUsingDifferentMethods() {
-        // ...
+        await _inventoryPage.AddProductToCartAsync("Sauce Labs Fleece Jacket");
+        await _inventoryPage.OpenProductDetailsAsync("Sauce Labs Backpack");
+
+        await _productDetailsPage.AddProductToCartAsync();
+        await _productDetailsPage.OpenShoppingCartAsync();
+
+        await _cartPage.AssertProductIsInCartAsync("Sauce Labs Fleece Jacket");
+        await _cartPage.AssertProductIsInCartAsync("Sauce Labs Backpack");
     }
 
     [Test]

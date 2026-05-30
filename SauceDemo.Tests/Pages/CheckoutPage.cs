@@ -1,4 +1,5 @@
 using Microsoft.Playwright;
+using System.Globalization;
 
 namespace SauceDemo.Tests.Pages;
 
@@ -16,6 +17,7 @@ public class CheckoutPage {
     private ILocator ContinueButton => _page.Locator("[data-test='continue']");
     private ILocator FinishButton => _page.Locator("[data-test='finish']");
     private ILocator CompleteHeader => _page.Locator("[data-test='complete-header']");
+    private ILocator ItemTotalLabel => _page.Locator("[data-test='subtotal-label']");
 
     public async Task FillCustomerInformationAndContinueAsync(
         string firstName,
@@ -33,5 +35,12 @@ public class CheckoutPage {
 
     public async Task AssertOrderCompletedAsync(string expectedMessage) {
         await Assertions.Expect(CompleteHeader).ToHaveTextAsync(expectedMessage);
+    }
+
+    public async Task AssertItemTotalAsync(decimal expectedTotal) {
+        var formattedTotal = expectedTotal.ToString("F2", CultureInfo.InvariantCulture);
+        var expectedText = $"Item total: ${formattedTotal}";
+
+        await Assertions.Expect(ItemTotalLabel).ToHaveTextAsync(expectedText);
     }
 }

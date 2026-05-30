@@ -14,6 +14,7 @@ public class AuthenticatedBaseTest : PageTest {
     protected InventoryPage _inventoryPage = null!;
     protected CartPage _cartPage = null!;
     protected CheckoutPage _checkoutPage = null!;
+    protected ProductDetailsPage _productDetailsPage = null!;
 
     [OneTimeSetUp]
     public async Task CreateStorageStateAsync() {
@@ -63,6 +64,7 @@ public class AuthenticatedBaseTest : PageTest {
         _inventoryPage = new InventoryPage(Page);
         _cartPage = new CartPage(Page);
         _checkoutPage = new CheckoutPage(Page);
+        _productDetailsPage = new ProductDetailsPage(Page);
 
         await Context.Tracing.StartAsync(new() {
             Screenshots = true,

@@ -63,4 +63,8 @@ public class InventoryPage {
     public async Task OpenShoppingCart() {
         await shoppingCartButton.ClickAsync();
     }
+
+    public async Task OpenProductDetailsAsync(string productName) {
+        await _page.GetByText(productName, new() { Exact = true }).ClickAsync();
+    }
 }
