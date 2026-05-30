@@ -18,8 +18,8 @@ public class InventoryPage {
     private ILocator ProductSortMenuButton => _page.Locator("[data-test='product-sort-container']");
     private ILocator ActiveSortOption => _page.Locator("[data-test='active-option']");
     private ILocator ProductPrices => _page.Locator("[data-test='inventory-item-price']");
+    private ILocator shoppingCartButton => _page.Locator("[data-test='shopping-cart-link']");
     
-
     public async Task AssertInventoryPageVisibleAsync() {
         await Assertions.Expect(PageTitle).ToBeVisibleAsync();
         await Assertions.Expect(InventoryContainer).ToBeVisibleAsync();
@@ -58,5 +58,9 @@ public class InventoryPage {
             .Locator("button")
             .GetByText("Add to cart")
             .ClickAsync();
+    }
+
+    public async Task OpenShoppingCart() {
+        await shoppingCartButton.ClickAsync();
     }
 }
