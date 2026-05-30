@@ -60,7 +60,7 @@ public class BaseTest : PageTest {
             TestContext.WriteLine($"Screenshot saved to: {screenshotPath}");
         }
         else {
-            await Page.ScreenshotAsync();
+            await Context.Tracing.StopAsync();
         }
     }
 

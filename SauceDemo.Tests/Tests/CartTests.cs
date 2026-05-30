@@ -1,16 +1,11 @@
-using Microsoft.Playwright;
-using Microsoft.Playwright.NUnit;
-using NUnit.Framework;
 using FluentAssertions;
 
-using SauceDemo.Tests.Config;
-using SauceDemo.Tests.Pages;
 using SauceDemo.Tests.TestData;
 using SauceDemo.Tests.Fixtures;
 
 namespace SauceDemo.Tests;
 
-public class CartTest : AuthenticatedBaseTest {
+public class CartTests : AuthenticatedBaseTest {
 
     [Test]
     public async Task TC05_AddSingleProductToCart() {
