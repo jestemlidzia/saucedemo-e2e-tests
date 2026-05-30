@@ -5,30 +5,11 @@ using NUnit.Framework;
 using SauceDemo.Tests.Config;
 using SauceDemo.Tests.Pages;
 using SauceDemo.Tests.TestData;
+using SauceDemo.Tests.Fixtures;
 
 namespace SauceDemo.Tests;
 
-public class LoginTest : PageTest {
-
-    private LoginPage _loginPage = null!;
-    private InventoryPage _inventoryPage = null!;
-
-    [SetUp]
-    public async Task SetUpAsync() {
-        TestContext.WriteLine("Setup...");
-        _loginPage = new LoginPage(Page);
-        _inventoryPage = new InventoryPage(Page);
-        await Page.GotoAsync(TestSettings.BaseUrl);
-    }
-
-    [TearDown]
-    public async Task STearDownAsync() {
-        TestContext.WriteLine("Clean up...");
-        await Page.ScreenshotAsync(new()
-        {
-            Path = "screenshot.png"
-        });
-    }
+public class LoginTest : BaseTest {
 
     [Test]
     public async Task TC01_SuccessfulLogin() {
