@@ -25,6 +25,8 @@ public class LoginTest : BaseTest {
 
     [Test]
     public async Task TC03_LoginAttemptWithLockedOutUser() {
+        // test Failed
+        // await _loginPage.LoginAsync(LoginTestData.StandardUser, LoginTestData.Password);
         await _loginPage.LoginAsync(LoginTestData.LockedOutUser, LoginTestData.Password);
         await _loginPage.AssertErrorMessageAsync(LoginTestData.LockedOutUserError);
     }
