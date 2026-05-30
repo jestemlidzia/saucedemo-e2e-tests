@@ -11,7 +11,7 @@ Automated end-to-end tests for SauceDemo written in C# using Playwright and NUni
 ## Setup & Run tests
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/jestemlidzia/saucedemo-e2e-tests.git
 cd saucedemo-e2e-tests/SauceDemo.Tests
 dotnet restore
 dotnet build
