@@ -38,16 +38,6 @@ public class BaseTest : PageTest {
 
             var testName = TestContext.CurrentContext.Test.Name;
 
-            var tracePath = Path.Combine(
-                TestSettings.TracesPath, $"{testName}.zip"
-            );
-
-            await Context.Tracing.StopAsync(new() {
-                Path = tracePath
-            });
-
-            TestContext.WriteLine($"Trace saved to: {tracePath}");
-
             var screenshotPath = Path.Combine(
                 TestSettings.ScreenshotsPath, $"{testName}.png"
             );
@@ -58,6 +48,16 @@ public class BaseTest : PageTest {
             });
 
             TestContext.WriteLine($"Screenshot saved to: {screenshotPath}");
+
+            var tracePath = Path.Combine(
+                TestSettings.TracesPath, $"{testName}.zip"
+            );
+
+            await Context.Tracing.StopAsync(new() {
+                Path = tracePath
+            });
+
+            TestContext.WriteLine($"Trace saved to: {tracePath}");
         }
         else {
             await Context.Tracing.StopAsync();
