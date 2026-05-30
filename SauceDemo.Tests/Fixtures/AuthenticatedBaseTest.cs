@@ -18,9 +18,7 @@ public class AuthenticatedBaseTest : PageTest {
 
     [OneTimeSetUp]
     public async Task CreateStorageStateAsync() {
-        if (!File.Exists(TestSettings.StorageStatePath)) {
-            await SaveStorageStateAsync();
-        }
+        await SaveStorageStateAsync();
     }
 
     public override BrowserNewContextOptions ContextOptions() {
@@ -95,7 +93,7 @@ public class AuthenticatedBaseTest : PageTest {
             });
 
             TestContext.WriteLine($"Screenshot saved to: {screenshotPath}");
-            
+
             var tracePath = Path.Combine(
                 TestSettings.TracesPath, $"{testName}.zip"
             );
