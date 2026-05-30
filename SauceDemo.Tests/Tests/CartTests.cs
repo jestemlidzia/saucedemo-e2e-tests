@@ -14,45 +14,45 @@ public class CartTest : AuthenticatedBaseTest {
 
     [Test]
     public async Task TC05_AddSingleProductToCart() {
-        await _inventoryPage.AddProductToCartAsync("Sauce Labs Bike Light");
+        await _inventoryPage.AddProductToCartAsync(Products.BikeLight);
         await _inventoryPage.OpenShoppingCart();
-        await _cartPage.AssertProductIsInCartAsync("Sauce Labs Bike Light");
+        await _cartPage.AssertProductIsInCartAsync(Products.BikeLight);
     }
 
     [Test]
     public async Task TC06_AddTwoDifferentProductsToCartUsingDifferentMethods() {
-        await _inventoryPage.AddProductToCartAsync("Sauce Labs Fleece Jacket");
-        await _inventoryPage.OpenProductDetailsAsync("Sauce Labs Backpack");
+        await _inventoryPage.AddProductToCartAsync(Products.FleeceJacket);
+        await _inventoryPage.OpenProductDetailsAsync(Products.Backpack);
 
         await _productDetailsPage.AddProductToCartAsync();
         await _productDetailsPage.OpenShoppingCartAsync();
 
-        await _cartPage.AssertProductIsInCartAsync("Sauce Labs Fleece Jacket");
-        await _cartPage.AssertProductIsInCartAsync("Sauce Labs Backpack");
+        await _cartPage.AssertProductIsInCartAsync(Products.FleeceJacket);
+        await _cartPage.AssertProductIsInCartAsync(Products.Backpack);
     }
 
     [Test]
     public async Task TC07_RemoveProductFromCart() {
-        await _inventoryPage.AddProductToCartAsync("Sauce Labs Bike Light");
-        await _inventoryPage.AddProductToCartAsync("Sauce Labs Onesie");
+        await _inventoryPage.AddProductToCartAsync(Products.BikeLight);
+        await _inventoryPage.AddProductToCartAsync(Products.Onesie);
 
         await _inventoryPage.OpenShoppingCart();
 
-        await _cartPage.AssertProductIsInCartAsync("Sauce Labs Bike Light");
-        await _cartPage.AssertProductIsInCartAsync("Sauce Labs Onesie");
+        await _cartPage.AssertProductIsInCartAsync(Products.BikeLight);
+        await _cartPage.AssertProductIsInCartAsync(Products.Onesie);
 
-        await _cartPage.RemoveProductByNameAsync("Sauce Labs Bike Light");
+        await _cartPage.RemoveProductByNameAsync(Products.BikeLight);
 
-        await _cartPage.AssertProductIsNotInCartAsync("Sauce Labs Bike Light");
-        await _cartPage.AssertProductIsInCartAsync("Sauce Labs Onesie");
+        await _cartPage.AssertProductIsNotInCartAsync(Products.BikeLight);
+        await _cartPage.AssertProductIsInCartAsync(Products.Onesie);
     }
 
     [Test]
     public async Task TC09_CartPricesShouldMatchInventoryPrices() {
         var expectedPrices = new Dictionary<string, decimal> {
-            { "Sauce Labs Fleece Jacket", 49.99m },
-            { "Sauce Labs Bolt T-Shirt", 15.99m },
-            { "Sauce Labs Bike Light", 9.99m }
+            { Products.FleeceJacket, 49.99m },
+            { Products.BoltTShirt, 15.99m },
+            { Products.BikeLight, 9.99m }
         };
 
         foreach (var productName in expectedPrices.Keys) {

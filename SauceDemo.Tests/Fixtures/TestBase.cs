@@ -19,8 +19,7 @@ public class BaseTest : PageTest {
         _loginPage = new LoginPage(Page);
         _inventoryPage = new InventoryPage(Page);
 
-        await Context.Tracing.StartAsync(new()
-        {
+        await Context.Tracing.StartAsync(new() {
             Screenshots = true,
             Snapshots = true,
             Sources = true
@@ -43,8 +42,7 @@ public class BaseTest : PageTest {
                 TestSettings.TracesPath, $"{testName}.zip"
             );
 
-            await Context.Tracing.StopAsync(new()
-            {
+            await Context.Tracing.StopAsync(new() {
                 Path = tracePath
             });
 
@@ -54,8 +52,7 @@ public class BaseTest : PageTest {
                 TestSettings.ScreenshotsPath, $"{testName}.png"
             );
 
-            await Page.ScreenshotAsync(new()
-            {
+            await Page.ScreenshotAsync(new() {
                 Path = screenshotPath,
                 FullPage = true
             });
